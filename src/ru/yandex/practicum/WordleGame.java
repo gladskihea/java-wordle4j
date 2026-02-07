@@ -9,11 +9,11 @@ public class WordleGame {
     private final List<String> attempts = new ArrayList<>();
     private final List<String> feedbacks = new ArrayList<>();
     private int steps = 0;
-    private final int MAX_STEPS = 6;
+    private final int maxSteps = 6;
     private final PrintWriter log;
 
     public int getRemainingSteps() {
-        return MAX_STEPS - steps;
+        return maxSteps - steps;
     }
 
     public WordleGame(WordleDictionary dictionary, PrintWriter log) {
@@ -78,7 +78,15 @@ public class WordleGame {
         return true;
     }
 
-    public boolean isWin(String feedback) { return feedback.equals("+++++"); }
-    public boolean hasSteps() { return steps < MAX_STEPS; }
-    public String getAnswer() { return answer; }
+    public boolean isWin(String feedback) {
+        return feedback.equals("+++++");
+    }
+
+    public boolean hasSteps() {
+        return steps < maxSteps;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
 }

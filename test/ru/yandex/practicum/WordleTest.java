@@ -62,7 +62,6 @@ class WordleTest {
 
     @Test
     void testNormalization() {
-        // Проверяем замену ё на е
         String input = "Ёжики";
         String normalized = input.toLowerCase().replace('ё', 'е');
         assertEquals("ежики", normalized);
