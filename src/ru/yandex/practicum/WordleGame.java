@@ -40,13 +40,21 @@ public class WordleGame {
     private String checkWord(String word) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 5; i++) {
-            char c = word.charAt(i);
-            if (c == answer.charAt(i)) {
-                sb.append("+");
-            } else if (answer.contains(String.valueOf(c))) {
-                sb.append("^");
+            char current = word.charAt(i);
+
+            int matchType;
+            if (current == answer.charAt(i)) {
+                matchType = 2;
+            } else if (answer.contains(String.valueOf(current))) {
+                matchType = 1;
             } else {
-                sb.append("-");
+                matchType = 0;
+            }
+
+            switch (matchType) {
+                case 2 -> sb.append("+");
+                case 1 -> sb.append("^");
+                case 0 -> sb.append("-");
             }
         }
         return sb.toString();

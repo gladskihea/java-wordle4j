@@ -26,38 +26,30 @@ public class Wordle {
 
             while (game.hasSteps()) {
                 System.out.println("\n--- Попыток осталось: " + game.getRemainingSteps() + " ---");
-                System.out.print("Введите слово > ");
+                System.out.print("> ");
 
                 String input = scanner.nextLine().trim();
-                String wordToProcess;
 
                 if (input.isEmpty()) {
-                    wordToProcess = game.getHint();
-                    System.out.println("Подсказка: " + wordToProcess);
-                    log.println("Пользователь нажал Enter. Автоматически выбрано слово: " + wordToProcess);
-                } else {
-                    wordToProcess = input;
+                    String hint = game.getHint();
+                    System.out.println("Подсказка: " + hint);
+                    continue;
                 }
 
                 try {
-                    // Теперь мы вызываем makeMove для слова (будь то ввод или подсказка)
-                    String feedback = game.makeMove(wordToProcess);
+                    String feedback = game.makeMove(input);
 
-                    System.out.println("Результат: " + feedback);
-                    log.println("Ход: " + wordToProcess + " | Результат: " + feedback);
+                    System.out.println("  " + feedback);
 
                     if (game.isWin(feedback)) {
-                        System.out.println("\nПоздравляем! Вы угадали слово!");
+                        System.out.println("\nПОЗДРАВЛЯЕМ! Вы угадали слово!");
                         return;
                     }
-
                 } catch (GameException e) {
                     System.out.println("Ошибка: " + e.getMessage());
-                    log.println("Ошибка при вводе '" + wordToProcess + "': " + e.getMessage());
+                    log.println("Ошибка ввода: " + e.getMessage());
                 }
             }
-
-
 
             System.out.println("Игра окончена. Загаданное слово было: " + game.getAnswer());
 
